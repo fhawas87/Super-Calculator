@@ -29,7 +29,7 @@ void Find_Smallest_Positions ( uint64_t *uint64_input, int &input_length ) {
             positions_with_lowest_value.clear();
             positions_with_lowest_value.emplace_back( index + 1 );
         }
-    
+
     // In case of more than 1 position containing lowest value from input,
 
         else if ( uint64_input[index] == lowest_value ) {
@@ -40,7 +40,7 @@ void Find_Smallest_Positions ( uint64_t *uint64_input, int &input_length ) {
     // Const auto& for better look ;),
     // Could be just int as positions are called from vector containing integers,
 
-    for ( auto &positions : positions_with_lowest_value ) {        
+    for ( auto &positions : positions_with_lowest_value ) {
         std::cout << positions << " ";
     }
 }
@@ -65,7 +65,7 @@ void Sort_Input ( uint64_t *uint64_input, int &input_length ) {
                 //has_changed = true;
 
         // Shorter version below but logic is the same,
-                
+
                 uint64_input[j] ^= uint64_input[j + 1];
                 uint64_input[j + 1] ^= uint64_input[j];
                 uint64_input[j] ^= uint64_input[j + 1];
@@ -149,9 +149,9 @@ void Reverse_Array ( uint64_t *uint64_input, int &input_length ) {
         right--;
     }
 
-    // Iterating to half the length of the table to replace each element, 
-    // With the corresponding element from the end and leave the middle, 
-    // Element unchanged in purpose of reversing the array, 
+    // Iterating to half the length of the table to replace each element,
+    // With the corresponding element from the end and leave the middle,
+    // Element unchanged in purpose of reversing the array,
 
 //    for ( int i = 0; i < input_length / 2; i++ ) {
 //        std::swap( reversed_tab[i], reversed_tab[input_length - i - 1] );
@@ -255,13 +255,13 @@ void Convex_Polygon_Area ( double *double_input, int &input_length ) {
     // And I can tell the compiler to access the centroid value by reference,
     // [&centroid], it is more efficient and in this case I'm certain that it doesn't affect original centroid value,
 
-    // I could use something like : std::vector<std::pair< double, vertex >> x, 
+    // I could use something like : std::vector<std::pair< double, vertex >> x,
     // Where double reference to an atan2(v.x - cen.x,v.y - cen.y) of point and centroid, and point reference
     // To the point which is beeing checked for comparing angle ( atan2() ) of points,
     // In purpose of sorting the points,
     // But if it is possible to use build in std::sort i prefer to use it in this case,
 
-    // Also sorting verticies clockwise but in case of performence I do believe it doesn't matter which way you sort, 
+    // Also sorting verticies clockwise but in case of performence I do believe it doesn't matter which way you sort,
 
     std::sort( points.begin(), points.end(), [&centroid]( vertex &first_vertex, vertex &second_vertex ) {
         double angle_1 = atan2( first_vertex.x - centroid.x, first_vertex.y - centroid.y );
@@ -318,7 +318,7 @@ void Solve_Equation ( double *double_input ) {
         }
     }
 
-    // Implementation of Cardano's method, 
+    // Implementation of Cardano's method,
 
     else {
         double a = double_input[0];
@@ -326,7 +326,7 @@ void Solve_Equation ( double *double_input ) {
         double c = double_input[2];
         double d = double_input[3];
 
-    // Converting cubic equation to canonical form acording to Cardano's method,  
+    // Converting cubic equation to canonical form acording to Cardano's method,
 
         double p = ( c / a ) - (( b * b ) / ( 3 * a * a ));
         double q = ( 2 * ( b * b * b )) / ( 27 * a * a * a ) + ( d / a ) - ( b * c / ( 3 * a * a ));
@@ -433,7 +433,7 @@ void Solve_Equation ( double *double_input ) {
             //    if ( floor(real_roots.at(i)) > floor(real_roots.at(i + 1))) {
             //    real_roots.at(i) = real_roots.at(i) ^ real_roots.at(i + 1);
             //    real_roots.at(i + 1) = real_roots.at(i) ^ real_roots.at(i + 1);
-            //    real_roots.at(i) = real_roots.at(i) ^ real_roots.at(i + 1);                
+            //    real_roots.at(i) = real_roots.at(i) ^ real_roots.at(i + 1);
             //}
 
             for ( const auto& real_root : real_roots) {
@@ -508,7 +508,7 @@ void Count_Set_Bits ( std::string *string_input, int &input_length ) {
     // & = "AND" bitwise operator is removing LSB from binary representation of a number,
     // It comparse for example 19 ( 10011 ) and 18 ( 10010),
     // And count amount of this operations :
-    // number =        1 0 0 1 1   
+    // number =        1 0 0 1 1
     // number - 1 =    1 0 0 1 0
     // number & =      1 0 0 1 0
     // ---------------------> counter + 1 ---------------> next loop;
@@ -526,7 +526,7 @@ void Count_Set_Bits ( std::string *string_input, int &input_length ) {
             }
             std::cout << set_bits_counter << " ";
         }
-    
+
     // Tried to split the number variable from input to its low part and high part,
     // But failed numerous number of times,
 
@@ -567,7 +567,7 @@ int main() {
     // And when I was creating new std::string[input_length] since the string,
     // Requires more space than its integer representation it was big problem,
     // And then I realized how much it influence the speed of the program execution,
-    // Decided to make every array size of 100 as long as it is not interfering with amount of numbers from input, 
+    // Decided to make every array size of 100 as long as it is not interfering with amount of numbers from input,
 
 
     // If you want to test the program with input lengths greater than 100 you can change static space in arrays,
@@ -582,7 +582,7 @@ int main() {
 //        std::string *string_input = new std::string[input_length];
 
     // I am filling up arrays inside each case separately to increase the speed,
-    // At the beginning I was getting double *double_input and then, 
+    // At the beginning I was getting double *double_input and then,
     // Using static_cast to convert it to uint64_t
 
         switch ( subprogram ) {
@@ -590,57 +590,105 @@ int main() {
                 for ( int i = 0; i < input_length; i++ ) {
                     std::cin >> uint64_input[i];
                 }
-                Find_Smallest_Positions ( uint64_input, input_length );
-                break;
+                if (input_length != uint64_input.size()) {
+                    std::cout << "Input length is different than size of container !\n";
+                    std::cout << "Make sure that the second number from the input is the same as number of given elements.\n";
+                }
+                else {
+                 Find_Smallest_Positions ( uint64_input, input_length );
+                 break;
+                }
 
             case 1:
                 for ( int i = 0; i < input_length; i++ ) {
                     std::cin >> uint64_input[i];
                }
-                Sort_Input ( uint64_input, input_length );
-                break;
+                if ( input_length != uint64_input.size()) {
+                    std::cout << "Input length is different than size of container !\n";
+                    std::cout << "Make sure that the second number from the input is the same as number of given elements.\n";
+                }
+                else {
+                 Sort_Input ( uint64_input, input_length );
+                 break;
+                }
 
             case 2:
                 for ( int i = 0; i < input_length; i ++ ) {
                     std::cin >> double_input[i];
                 }
-                Euclidean_Norm ( double_input, input_length );
-                break;
+                if ( input_length != double_input.size()) {
+                    std::cout << "Input length is different than size of container !\n";
+                    std::cout << "Make sure that the second number from the input is the same as number of given elements.\n";
+                }
+                else {
+                 Euclidean_Norm ( double_input, input_length );
+                 break;
+                }
 
             case 3:
                 for ( int i = 0; i < input_length; i ++ ) {
                     std::cin >> double_input[i];
                 }
-                Standard_Deviation ( double_input, input_length );
-                break;
+                if ( input_length != double_input.size()) {
+                    std::cout << "Input length is different than size of container !\n";
+                    std::cout << "Make sure that the second number from the input is the same as number of given elements.\n";
+                }
+                else {
+                    Standard_Deviation ( double_input, input_length );
+                    break;
+                }
 
             case 4:
                 for ( int i = 0; i < input_length; i++ ) {
                     std::cin >> uint64_input[i];
                 }
-                Reverse_Array ( uint64_input, input_length );
-                break;
+                if ( input_length != uint64_input.size()) {
+                    std::cout << "Input length is different than size of container !\n";
+                    std::cout << "Make sure that the second number from the input is the same as number of given elements.\n";
+                }
+                else {
+                    Reverse_Array ( uint64_input, input_length );
+                    break;
+                }
 
             case 5:
                 for ( int i = 0; i < input_length; i++ ) {
                     std::cin >> uint64_input[i];
                 }
-                Prime_Check ( uint64_input, input_length );
-                break;
+                if ( input_length != uint64_input.size()) {
+                    std::cout << "Input length is different than size of container !\n";
+                    std::cout << "Make sure that the second number from the input is the same as number of given elements.\n";
+                }
+                else {
+                    Prime_Check ( uint64_input, input_length );
+                    break;
+                }
 
             case 6:
                 for ( int i = 0; i < input_length; i ++ ) {
                     std::cin >> double_input[i];
                 }
-                Convex_Polygon_Area ( double_input, input_length );
-                break;
+                if ( input_length != double_input.size()) {
+                    std::cout << "Input length is different than size of container !\n";
+                    std::cout << "Make sure that the second number from the input is the same as number of given elements.\n";
+                }
+                else {
+                    Convex_Polygon_Area ( double_input, input_length );
+                    break;
+                }
 
             case 7:
                 for ( int i = 0; i < input_length; i ++ ) {
                     std::cin >> double_input[i];
                 }
-                Solve_Equation ( double_input );
-                break;
+                if ( input_length != double_input.size()) {
+                    std::cout << "Input length is different than size of container !\n";
+                    std::cout << "Make sure that the second number from the input is the same as number of given elements.\n";
+                }
+                else {
+                    Solve_Equation ( double_input );
+                    break;
+                }
 
             case 8:
                 std::cin >> number;
@@ -652,8 +700,14 @@ int main() {
                 for ( int i = 0; i < input_length; i++ ) {
                     std::cin >> string_input[i];
                 }
-                Count_Set_Bits ( string_input, input_length );
-                break;
+                if ( input_length != string_input.size()) {
+                    std::cout << "Input length is different than size of container !\n";
+                    std::cout << "Make sure that the second number from the input is the same as number of given elements.\n";
+                }
+                else {
+                    Count_Set_Bits ( string_input, input_length );
+                    break;
+                }
 
             default:
                 std::cout << "Subprogram value out of range !\n";
