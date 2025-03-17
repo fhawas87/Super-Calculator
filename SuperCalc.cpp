@@ -1,6 +1,5 @@
-// Welcome to my first ever project in c++,
 
-// It is also my first project in collage at basics of programming subject,
+// It is my first project in collage at basics of programming subject,
 // Feel free to test it with numbers up to 64 bits ( >= 63 bits ),
 // But remember about logic of the input : first number is case number ( problem number ),
 // Second is the length of the given input, and then the input numbers separated by space,
